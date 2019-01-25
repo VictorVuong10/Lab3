@@ -21,7 +21,7 @@ void Stack::pop() {
 }
 
 const int Stack::top() {
-    return currentTop;
+    return onStack[currentTop];
 }
 
 const bool Stack::empty() {

@@ -22,8 +22,7 @@ TEST_CASE("A new stack can push 10 times and the 11th time will be false", "[Sta
         REQUIRE(tester2.push(i));
         REQUIRE(tester2.top() == i);
     }
-
-    REQUIRE(!tester2.push(10));
+    REQUIRE(!tester2.push(20));
 }
 
 TEST_CASE("Stack is full", "[Stack]")
@@ -32,7 +31,23 @@ TEST_CASE("Stack is full", "[Stack]")
     REQUIRE(tester2.full());
 }
 
-TEST_CASE("pop out everything", "[Stack]")
+TEST_CASE("Pushing to a full stack returns false and does not push and the current top is the same", "[Stack]")
+{
+    REQUIRE(tester2.full());
+    REQUIRE(!tester2.push(100));
+    REQUIRE(tester2.top() == 9);
+}
+
+TEST_CASE("pop a int from a full stack off and put a new int on", "[Stack]")
+{
+    REQUIRE(tester2.full());
+    tester2.pop();
+    REQUIRE(tester2.top() == 8);
+    REQUIRE(tester2.push(100));
+    REQUIRE(tester2.top() == 100);
+}
+
+TEST_CASE("pop out everything in a full stack", "[Stack]")
 {
     REQUIRE(tester2.full());
     for(int i =9; i <= 0; ++i) {
